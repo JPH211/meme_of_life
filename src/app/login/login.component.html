@@ -1,40 +1,33 @@
-<div class="rootcontainer">
-  <div class="loginform">
-    <form formGroup="lognForm" (ngSubmit)="onLogn()">
-      <div>
-        <label for="uname">user name:</label>
-        <input type="text"
-         id="uname"
-         formControlName="uname">
+<div class="table-dark mx-auto p-4 col-md-4">
+  <div class="display-table-cell">
+    <div class="authBlock">
+      <h3>Log In</h3>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Username" #userName required>
       </div>
-      <div>
-        <label for="password">Password: </label>
-        <input type="password"
-        id="password"
-        formControlName="password">
+      <div class="form-group ">
+        <input type="password" class="form-control" placeholder="Password" #userPassword required>
       </div>
-
-      <br>
-
-      <button type="submit" [disabled]="!lognForm.valid">Submit</button>
-
-      <br>
-
-      <span *ngIf="!lognForm.valid">
-        The user name and password combination does not exist.<br>
-        Please reenter your user name and password or click the register button below
-      </span>
-
-    </form>
-  </div>
-
-  <hr>
-
-  <div class="registerform">
-    <p> if you are a new customer plaease click here to view our requirments.<br>click the Register button below to be taken to our
-      registration form.</p>
-
-      <button routerLink="/register" >Register</button>
-
+      <!-- Calling SignIn Api from AuthService -->
+      <div class="form-group">
+        <input type="button" class="btn btn-primary" value="Log in" (click)="authService.SignIn(userName.value, userPassword.value)">
+      </div>
+      <div class="form-group">
+        <span class="or"><span class="orInner">Or</span></span>
+      </div>
+      <!-- Calling GoogleAuth Api from AuthService -->
+      <div class="form-group">
+        <button type="button" class="btn btn-outline-light" (click)="authService.GoogleAuth()">
+          <img src="https://img.icons8.com/color/16/000000/google-logo.png">
+          Log in with Google
+        </button>
+      </div>
+      <div class="forgotPassword">
+        <a routerLink="/forgot-password">Forgot Password?</a>
+      </div>
+    </div>
+    <div class="redirectToLogin">
+      <span>Don't have an account?<a class="redirect" routerLink="/register-user"> Sign Up</a></span>
+    </div>
   </div>
 </div>
